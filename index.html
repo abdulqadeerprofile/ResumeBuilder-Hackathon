@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume Builder</title>
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  />
+  <link rel="stylesheet" href="./src/styles/styles.css" />
+</head>
+<body class="light-theme">
+  <!-- Profile Image -->
+  <div class="profile-image-container">
+    <img
+      src="./src/assets/profile-image.jpg"
+      alt="Profile Image"
+      class="profile-image"
+    />
+  </div>
+
+  <!-- Header Section -->
+  <header class="header">
+    <h1>Abdul Qadeer</h1>
+    <p>Front-End Developer • React Native Developer</p>
+
+    <div class="contact-info">
+      <i class="icon fas fa-map-marker-alt"></i> Karachi &nbsp;&nbsp;
+      <i class="icon fas fa-phone"></i> +92 3198220267 &nbsp;&nbsp;
+      <i class="icon fas fa-envelope"></i> abdulqadeerprofile@gmail.com
+    </div>
+  </header>
+
+  <!-- Education Section -->
+  <section class="education">
+    <h2 class="section-heading">
+      <i class="fas fa-chevron-right toggle-icon"></i>
+      Education
+    </h2>
+    <div class="education-content">
+      <div class="education-item">
+        <h3>Matriculation</h3>
+        <p>Merit N Merit School</p>
+        <span>2019 – 2021</span>
+      </div>
+      <div class="education-item">
+        <h3>Intermediate</h3>
+        <p>Karachi Board</p>
+        <span>2021 – 2023</span>
+      </div>
+      <div class="education-item">
+        <h3>Federal Urdu University</h3>
+        <p>Diploma in Governance & Artificial Intelligence</p>
+        <span>2023 – Present</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section class="experience">
+    <h2 class="section-heading">
+      <i class="fas fa-chevron-right toggle-icon"></i>
+      Experience
+    </h2>
+    <div class="experience-content">
+      <div class="experience-item">
+        <h3>Techverse Solutions</h3>
+        <p>React Native Developer</p>
+        <span>Jan 2021 – Dec 2022</span>
+        <ul>
+          <li>Led the development of a mobile app for e-commerce using React Native, improving customer engagement by 30%.</li>
+          <li>Collaborated with UI/UX designers to enhance user interface consistency and experience.</li>
+          <li>Implemented Redux for state management, boosting application performance and scalability.</li>
+        </ul>
+      </div>
+
+      <div class="experience-item">
+        <h3>Innovatech Software House</h3>
+        <p>Full Stack Developer</p>
+        <span>Jan 2020 – Dec 2021</span>
+        <ul>
+          <li>Developed and maintained RESTful APIs using Node.js and Express, facilitating seamless backend communication.</li>
+          <li>Redesigned client dashboards and reporting systems, increasing client satisfaction by 25%.</li>
+          <li>Integrated third-party APIs, including payment gateways and social media APIs, into client applications.</li>
+        </ul>
+      </div>
+
+      <div class="experience-item">
+        <h3>Codify Labs</h3>
+        <p>Junior Front-End Developer</p>
+        <span>Jul 2019 – Dec 2020</span>
+        <ul>
+          <li>Developed responsive web applications using HTML5, CSS3, and JavaScript for multiple clients.</li>
+          <li>Collaborated with back-end developers to integrate REST APIs into the front-end interface.</li>
+          <li>Tested and debugged applications across various devices and browsers, ensuring cross-browser compatibility.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="projects">
+    <h2 class="section-heading">
+      <i class="fas fa-chevron-right toggle-icon"></i>
+      Featured Projects
+    </h2>
+    <div class="projects-content">
+      <div class="project-item">
+        <h3>SPKJIS</h3>
+        <p>React, Chakra UI, Express, MongoDB, Redis</p>
+        <p>An application to detect thesis titles' plagiarism using Jaro Winkler algorithm.</p>
+      </div>
+      <div class="project-item">
+        <h3>Task Manager App</h3>
+        <p>React Native, Firebase, Redux</p>
+        <p>A task management mobile app with real-time sync and notifications.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills & Tools Section -->
+  <section class="skills-tools">
+    <h2 class="section-heading">
+      <i class="fas fa-chevron-right toggle-icon"></i>
+      Skills & Tools
+    </h2>
+    <div class="skills-tools-content">
+      <div class="skills">
+        <h3>Languages</h3>
+        <p>HTML, CSS/SASS, TypeScript, JavaScript</p>
+      </div>
+
+      <div class="technologies">
+        <h3>Technologies</h3>
+        <p>React, Redux, TailwindCSS, Chakra UI</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Theme Toggle Button -->
+  <button id="themeToggle">Toggle Theme</button>
+
+  <script src="./src/scripts/themeToggle.js"></script>
+  <script src="./src/scripts/toggleContent.js"></script>
+</body>
+</html>

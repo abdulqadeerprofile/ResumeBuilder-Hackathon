@@ -1,0 +1,89 @@
+:root {
+  --background-color: white;
+  --text-color: black;
+  --primary-color: #ff5e5e;
+}
+
+.dark-theme {
+  --background-color: #2c2c2c;
+  --text-color: white;
+  --primary-color: #ff8c00;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: 'Arial', sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.profile-image-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.profile-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--primary-color);
+}
+
+header, .education, .experience, .projects, .skills-tools {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: var(--background-color);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2, h3 {
+  color: var(--primary-color);
+}
+
+.header {
+  text-align: center;
+}
+
+.contact-info {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.icon {
+  font-size: 18px;
+  color: var(--text-color);
+}
+
+.section-heading {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.toggle-icon {
+  margin-right: 10px;
+  transition: transform 0.3s;
+}
+
+.education-content,
+.experience-content,
+.projects-content,
+.skills-tools-content {
+  display: none;
+  padding-top: 10px;
+}

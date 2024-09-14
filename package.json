@@ -11,6 +11,8 @@
   "license": "MIT",
   "description": "",
   "dependencies": {
-    "@types/node": "^22.5.4"
+    "@types/node": "^22.5.4",
+    "html2pdf.js": "^0.10.2",
+    "jspdf": "^2.5.1"
   }
 }

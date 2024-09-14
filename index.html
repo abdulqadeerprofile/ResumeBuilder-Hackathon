@@ -9,140 +9,425 @@
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
   />
-  <link rel="stylesheet" href="./src/styles/styles.css" />
+  <style>
+    :root {
+      --background-color: white;
+      --text-color: black;
+      --primary-color: #ff5e5e;
+      --border-color: #ddd;
+    }
+
+    .dark-theme {
+      --background-color: #2c2c2c;
+      --text-color: white;
+      --primary-color: #ff8c00;
+      --border-color: #444;
+    }
+
+    body {
+      background-color: var(--background-color);
+      color: var(--text-color);
+      font-family: 'Arial', sans-serif;
+      transition: background-color 0.3s, color 0.3s;
+      margin: 0;
+      padding: 0;
+    }
+
+    .profile-image-container {
+      text-align: center;
+      margin-top: 20px;
+      position: relative;
+      width: 150px;
+      height: 150px;
+    }
+
+    .profile-image {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--primary-color);
+    }
+
+    header, .education, .experience, .projects, .skills-tools {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: var(--background-color);
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border: 1px solid var(--border-color);
+    }
+
+    h1, h2, h3 {
+      color: var(--primary-color);
+    }
+
+    .header {
+      text-align: center;
+    }
+
+    .contact-info {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    button {
+      background-color: var(--primary-color);
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+      padding: 10px 20px;
+    }
+
+    button:hover {
+      background-color: darken(var(--primary-color), 10%);
+    }
+
+    .icon {
+      font-size: 18px;
+      color: var(--text-color);
+    }
+
+    .section-heading {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+
+    .toggle-icon {
+      margin-right: 10px;
+      transition: transform 0.3s;
+    }
+
+    .education-content,
+    .experience-content,
+    .projects-content,
+    .skills-tools-content {
+      display: none;
+      padding-top: 10px;
+    }
+
+    .input-field {
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      padding: 8px;
+      margin: 4px 0;
+      width: 100%;
+      box-sizing: border-box;
+      background-color: var(--background-color);
+      color: var(--text-color);
+    }
+
+    .input-field::placeholder {
+      color: #d3d3d3; /* Light gray color */
+    }
+
+    .input-field:focus {
+      border-color: var(--primary-color);
+      outline: none;
+    }
+
+    .header-input {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    textarea.input-field {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .edit-icon {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background-color: #fff;
+      border-radius: 50%;
+      padding: 5px;
+      cursor: pointer;
+      color: #007bff;
+      transition: color 0.3s;
+    }
+
+    .edit-icon:hover {
+      color: #0056b3;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed;
+      z-index: 1; /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+      padding-top: 60px;
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 5% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 500px;
+    }
+
+    .modal-content h2 {
+      margin-top: 0;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .bottom-action-buttons-section {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+    }
+
+    .bottom-action-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .action-button {
+      background-color: var(--primary-color);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      cursor: pointer;
+      font-size: 20px;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s;
+    }
+
+    .action-button:hover {
+      background-color: darken(var(--primary-color), 10%);
+    }
+  </style>
 </head>
 <body class="light-theme">
+
   <!-- Profile Image -->
-  <div class="profile-image-container">
-    <img
-      src="./src/assets/profile-image.jpg"
-      alt="Profile Image"
-      class="profile-image"
-    />
-  </div>
+  <center>
+    <div class="profile-image-container">
+      <img
+        id="profileImage"
+        src="./src/assets/profile-image.jpg"
+        alt="Profile Image"
+        class="profile-image"
+      />
+      <i class="edit-icon fas fa-edit" aria-label="Edit profile image"></i>
+    </div>
+  </center>
 
   <!-- Header Section -->
   <header class="header">
-    <h1>Abdul Qadeer</h1>
-    <p>Front-End Developer • React Native Developer</p>
+    <input
+      type="text"
+      value="Your Name Here"
+      class="input-field header-input"
+      placeholder="Your Name Here"
+      aria-label="Full Name"
+    />
+    <input
+      type="text"
+      value="Your Current Job Title Here"
+      class="input-field header-input"
+      placeholder="Your Current Job Title Here"
+      aria-label="Job Title"
+    />
 
     <div class="contact-info">
-      <i class="icon fas fa-map-marker-alt"></i> Karachi &nbsp;&nbsp;
-      <i class="icon fas fa-phone"></i> +92 3198220267 &nbsp;&nbsp;
-      <i class="icon fas fa-envelope"></i> abdulqadeerprofile@gmail.com
+      <i class="icon fas fa-map-marker-alt" aria-label="Location"></i>
+      <input
+        type="text"
+        value="Your Location Here"
+        class="input-field"
+        placeholder="Your Location Here"
+        aria-label="Location"
+      />
+      <i class="icon fas fa-phone" aria-label="Phone"></i>
+      <input
+        type="text"
+        value="Your Number With Country Code Here"
+        class="input-field"
+        placeholder="Your Number With Country Code Here"
+        aria-label="Phone Number"
+      />
+      <i class="icon fas fa-envelope" aria-label="Email"></i>
+      <input
+        type="email"
+        value="Your Email Here"
+        class="input-field"
+        placeholder="Your Email Here"
+        aria-label="Email Address"
+      />
     </div>
   </header>
 
   <!-- Education Section -->
   <section class="education">
     <h2 class="section-heading">
-      <i class="fas fa-chevron-right toggle-icon"></i>
+      <i class="fas fa-chevron-right toggle-icon" aria-hidden="true"></i>
       Education
     </h2>
     <div class="education-content">
       <div class="education-item">
-        <h3>Matriculation</h3>
-        <p>Merit N Merit School</p>
-        <span>2019 – 2021</span>
+        <input
+          type="text"
+          value="Matriculation - Your School Name Here"
+          class="input-field"
+          placeholder="Matriculation - Your School Name Here"
+          aria-label="Matriculation Details"
+        />
+        <input
+          type="text"
+          value="Your School Name Here"
+          class="input-field"
+          placeholder="Your School Name Here"
+          aria-label="School Name"
+        />
+        <input
+          type="text"
+          value="Year Started – Year Ended"
+          class="input-field"
+          placeholder="Year Started – Year Ended"
+          aria-label="Duration"
+        />
       </div>
-      <div class="education-item">
-        <h3>Intermediate</h3>
-        <p>Karachi Board</p>
-        <span>2021 – 2023</span>
-      </div>
-      <div class="education-item">
-        <h3>Federal Urdu University</h3>
-        <p>Diploma in Governance & Artificial Intelligence</p>
-        <span>2023 – Present</span>
-      </div>
+      <!-- Repeat for other education items -->
     </div>
   </section>
 
   <!-- Experience Section -->
   <section class="experience">
     <h2 class="section-heading">
-      <i class="fas fa-chevron-right toggle-icon"></i>
+      <i class="fas fa-chevron-right toggle-icon" aria-hidden="true"></i>
       Experience
     </h2>
     <div class="experience-content">
       <div class="experience-item">
-        <h3>Techverse Solutions</h3>
-        <p>React Native Developer</p>
-        <span>Jan 2021 – Dec 2022</span>
-        <ul>
-          <li>Led the development of a mobile app for e-commerce using React Native, improving customer engagement by 30%.</li>
-          <li>Collaborated with UI/UX designers to enhance user interface consistency and experience.</li>
-          <li>Implemented Redux for state management, boosting application performance and scalability.</li>
-        </ul>
+        <input
+          type="text"
+          value="Company Name Here"
+          class="input-field"
+          placeholder="Company Name Here"
+          aria-label="Company Name"
+        />
+        <input
+          type="text"
+          value="Job Title Here"
+          class="input-field"
+          placeholder="Job Title Here"
+          aria-label="Job Title"
+        />
+        <input
+          type="text"
+          value="Year Started – Year Ended"
+          class="input-field"
+          placeholder="Year Started – Year Ended"
+          aria-label="Duration"
+        />
+        <textarea
+          class="input-field"
+          placeholder="Your Key Responsibilities Here"
+          aria-label="Responsibilities"
+        >Your Key Responsibilities Here</textarea>
       </div>
-
-      <div class="experience-item">
-        <h3>Innovatech Software House</h3>
-        <p>Full Stack Developer</p>
-        <span>Jan 2020 – Dec 2021</span>
-        <ul>
-          <li>Developed and maintained RESTful APIs using Node.js and Express, facilitating seamless backend communication.</li>
-          <li>Redesigned client dashboards and reporting systems, increasing client satisfaction by 25%.</li>
-          <li>Integrated third-party APIs, including payment gateways and social media APIs, into client applications.</li>
-        </ul>
-      </div>
-
-      <div class="experience-item">
-        <h3>Codify Labs</h3>
-        <p>Junior Front-End Developer</p>
-        <span>Jul 2019 – Dec 2020</span>
-        <ul>
-          <li>Developed responsive web applications using HTML5, CSS3, and JavaScript for multiple clients.</li>
-          <li>Collaborated with back-end developers to integrate REST APIs into the front-end interface.</li>
-          <li>Tested and debugged applications across various devices and browsers, ensuring cross-browser compatibility.</li>
-        </ul>
-      </div>
+      <!-- Repeat for other experience items -->
     </div>
   </section>
 
   <!-- Projects Section -->
   <section class="projects">
     <h2 class="section-heading">
-      <i class="fas fa-chevron-right toggle-icon"></i>
-      Featured Projects
+      <i class="fas fa-chevron-right toggle-icon" aria-hidden="true"></i>
+      Projects
     </h2>
     <div class="projects-content">
       <div class="project-item">
-        <h3>SPKJIS</h3>
-        <p>React, Chakra UI, Express, MongoDB, Redis</p>
-        <p>An application to detect thesis titles' plagiarism using Jaro Winkler algorithm.</p>
+        <input
+          type="text"
+          value="Project Title Here"
+          class="input-field"
+          placeholder="Project Title Here"
+          aria-label="Project Title"
+        />
+        <textarea
+          class="input-field"
+          placeholder="Project Description Here"
+          aria-label="Project Description"
+        >Project Description Here</textarea>
       </div>
-      <div class="project-item">
-        <h3>Task Manager App</h3>
-        <p>React Native, Firebase, Redux</p>
-        <p>A task management mobile app with real-time sync and notifications.</p>
-      </div>
+      <!-- Repeat for other projects -->
     </div>
   </section>
 
   <!-- Skills & Tools Section -->
   <section class="skills-tools">
     <h2 class="section-heading">
-      <i class="fas fa-chevron-right toggle-icon"></i>
+      <i class="fas fa-chevron-right toggle-icon" aria-hidden="true"></i>
       Skills & Tools
     </h2>
     <div class="skills-tools-content">
-      <div class="skills">
-        <h3>Languages</h3>
-        <p>HTML, CSS/SASS, TypeScript, JavaScript</p>
-      </div>
-
-      <div class="technologies">
-        <h3>Technologies</h3>
-        <p>React, Redux, TailwindCSS, Chakra UI</p>
-      </div>
+      <input
+        type="text"
+        value="Skill/Tool Name Here"
+        class="input-field"
+        placeholder="Skill/Tool Name Here"
+        aria-label="Skill/Tool Name"
+      />
+      <!-- Repeat for other skills/tools -->
     </div>
   </section>
 
-  <!-- Theme Toggle Button -->
-  <button id="themeToggle">Toggle Theme</button>
+  <!-- Bottom Action Buttons -->
+  <div class="bottom-action-buttons-section">
+    <div class="bottom-action-buttons">
+      <button class="action-button" onclick="downloadPDF()">
+        <i class="fas fa-download"></i>
+      </button>
+      <button class="action-button" onclick="shareResume()">
+        <i class="fas fa-share"></i>
+      </button>
+    </div>
+  </div>
 
-  <script src="./src/scripts/themeToggle.js"></script>
-  <script src="./src/scripts/toggleContent.js"></script>
+  <!-- Modal for Profile Image Upload -->
+  <div id="profileModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Update Profile Image</h2>
+      <input type="file" id="fileInput" />
+      <button id="uploadButton">Upload</button>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+  <script src="./index.js"></script>
+
+
 </body>
 </html>

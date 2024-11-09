@@ -1,5 +1,4 @@
 "use strict";
-// Toggle sections
 const headings = document.querySelectorAll('.section-heading');
 headings.forEach((heading) => {
     heading.addEventListener('click', () => {
@@ -13,7 +12,6 @@ headings.forEach((heading) => {
         }
     });
 });
-// Modal logic
 const modal = document.getElementById('profileModal');
 const editIcon = document.querySelector('.edit-icon');
 const closeModal = document.querySelector('.close');

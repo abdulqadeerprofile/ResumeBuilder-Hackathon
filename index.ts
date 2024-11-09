@@ -1,7 +1,5 @@
-// Ensure html2pdf is available
-declare const html2pdf: any; // Use declare to avoid TypeScript errors if html2pdf isn't properly typed
+declare const html2pdf: any; 
 
-// Toggle sections
 const headings = document.querySelectorAll<HTMLElement>('.section-heading');
 headings.forEach((heading) => {
   heading.addEventListener('click', () => {
@@ -16,7 +14,6 @@ headings.forEach((heading) => {
   });
 });
 
-// Modal logic
 const modal = document.getElementById('profileModal') as HTMLElement | null;
 const editIcon = document.querySelector<HTMLElement>('.edit-icon');
 const closeModal = document.querySelector<HTMLElement>('.close');
